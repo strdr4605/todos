@@ -18,6 +18,17 @@ router.get('/getAllTodos', (req, res) => {
   }).sort({createdAt: -1})
 })
 
+router.get('/findByDescription', (req, res) => {
+  let likeDesc = req.query.desc
+  Todo.find({description: {$regex : ".*" + likeDesc + ".*" , $options: "i"} }, (err, todos) => {
+    if (err) {
+      res.json(err)
+    } else {
+      res.json(todos)
+    }
+  })
+})
+
 // End GET Section
 
 // Start POST Section
