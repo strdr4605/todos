@@ -1,5 +1,6 @@
 const router = require('express').Router(),
       User = require('../models/user')
+      bcrypt = require('bcryptjs')
 
 // Start GET Section
 
@@ -26,6 +27,16 @@ router.post('/newUser', (req, res) => {
   newUser.save((err) => {
     if (err) throw err
     res.send({message: "new User created"})
+  })
+})
+
+router.post('/checkPassword', (req, res) => {
+  let userLogin = req.body
+  User.findOne({username: userLogin.username}, (err, doc) => {
+      bcrypt.compare(userLogin.password, doc.password, (err, result) => {
+      if(result) res.send({value: true})
+      else res.send({value: false})
+    })
   })
 })
 
