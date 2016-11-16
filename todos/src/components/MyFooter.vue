@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="footer">
+  <div class="footer navbar-inverse">
       <div class="container">
         <p class="text-muted">SPA Todos App on NodeJs and VueJs. <a href="https://github.com/strdr4605/todos">GitHub Repo</a></p>
       </div>
@@ -20,12 +20,11 @@ export default {
 
 <style lang="css">
 .footer {
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
   padding: 1rem;
-  background-color: #efefef;
   text-align: center;
 }
 </style>

@@ -36,12 +36,12 @@ router.get('/findByDescription', (req, res) => {
 router.post('/newTodo/:username', (req, res) => {
   let username = req.params.username
   User.findOne({username: username}, (err, user) => {
-    if (err) throw err
+    if (err) res.send(err)
     let reqTodo = req.body
     reqTodo.userId = user._id
     let newTodo = Todo(reqTodo)
     newTodo.save((err) => {
-      if (err) throw err
+      if (err) res.send(err)
       res.send({message: "new Todo created"})
     })
   })
@@ -55,7 +55,7 @@ router.post('/updateTodo/:todoId', (req, res) => {
     {_id: todoId},
     {$set: {description: updatedTodo.description, done: updatedTodo.done, priority: updatedTodo.priority}},
     (err, numAffected) => {
-      if (err) throw err
+      if (err) res.send(err)
       console.log(numAffected)
       res.send(numAffected)
   })

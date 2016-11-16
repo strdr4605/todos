@@ -25,7 +25,7 @@ router.get('/getAllUsers', (req, res) => {
 router.post('/newUser', (req, res) => {
   let newUser = User(req.body)
   newUser.save((err) => {
-    if (err) throw err
+    if (err) res.send(err)
     res.send({message: "new User created"})
   })
 })

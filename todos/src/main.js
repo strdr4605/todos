@@ -3,6 +3,7 @@ import App from './App'
 import VueRouter from 'vue-router'
 import Login from './components/Login'
 import Todos from './components/Todos'
+import store from './vuex/store'
 
 Vue.use(VueRouter)
 
@@ -19,5 +20,6 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   render: (h) => h(App),
-  router
+  router,
+  store
 })

@@ -4,7 +4,10 @@ const express = require('express'),
       mongoose = require('mongoose'),
       todoRoutes = require('./routes/todos'),
       userRoutes = require('./routes/users')
-      bodyParser = require('body-parser')
+      bodyParser = require('body-parser'),
+      cors = require('cors')
+
+app.use(cors())
 
 app.use(bodyParser.urlencoded({
     extended: false
