@@ -10,7 +10,7 @@
         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" v-model="password">
       </div>
       <button type="submit" class="btn btn-default">  <router-link to="/todos">Log in</router-link></button>
-      <button type="botton" @click="newUser({username: username, password: password}); getAllUsers" class="btn btn-default">Register</button>
+      <button type="botton" @click="updateUsers" class="btn btn-default">Register</button>
     </form>
     {{ allUsersGetter }}
   </div>
@@ -27,10 +27,18 @@ export default {
   mounted () {
     this.getAllUsers()
   },
-  methods: mapActions([
-    'getAllUsers',
-    'newUser'
-  ])
+  methods: {
+    updateUsers () {
+      this.newUser({username: this.username, password: this.password})
+      setTimeout(() => {
+        this.getAllusers()
+      }, 1000)
+    },
+    ...mapActions([
+      'getAllUsers',
+      'newUser'
+    ])
+  }
 }
 </script>
 
